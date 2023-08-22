@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integrando HTML ao Flask</title>
+    <title>Listas de Frutas</title>
 </head>
 <body>
-    <h2>Integrando HTML ao Flask</h2>
+    <h2 style="text-align: center">Listas de Frutask</h2>
+    <hr/>
+    <ol>
+        <form action="{{url_for('principal')}}" method="POST">
+            <label>Fruta</label>
+            <input type="text" name="fruta">
+            <button>Acicionar</button>
+        </form>
+
+        <p> </p>
+
+        {% for fruta in frutas %}
+            <li>{{fruta}}</li>
+        {% endfor %}        
+    </ol>
 </body>
 </html>
