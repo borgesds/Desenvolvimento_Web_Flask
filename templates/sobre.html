@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diario do Professor</title>
-</head>
-<body>
-    <h2 style="text-align: center">Diario do Professor</h2>
-    <p style="text-align: center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex eligendi culpa deleniti nisi maiores corrupti. Deleniti recusandae voluptatem quos corporis dolorum molestiae, libero, praesentium, est asperiores facere voluptatum iste consequatur.</p>
-    <p style="text-align: center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nemo ea quidem nisi esse. Ad asperiores sint sapiente hic dolor quisquam odio nisi, laudantium ea aperiam nostrum tempore expedita temporibus?</p>
-    <hr/>
-    <form action="{{url_for('sobre')}}" method="POST">
-        <label>Aluno</label>
-        <input type="text" name="aluno" required>
 
-        <label>Nota</label>
-        <input type="text" name="nota" required>
+{% extends 'base.html' %}
+{% block conteudo %}
 
-        <button>Adicionar</button>
-    </form>
+<h2 style="text-align: center">Diario do Professor</h2>
+<p style="text-align: center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex eligendi culpa deleniti nisi maiores corrupti. Deleniti recusandae voluptatem quos corporis dolorum molestiae, libero, praesentium, est asperiores facere voluptatum iste consequatur.</p>
+<p style="text-align: center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nemo ea quidem nisi esse. Ad asperiores sint sapiente hic dolor quisquam odio nisi, laudantium ea aperiam nostrum tempore expedita temporibus?</p>
+<hr/>
+<form action="{{url_for('sobre')}}" method="POST">
+    <label>Aluno</label>
+    <input type="text" name="aluno" required>
 
-    <p> </p>
+    <label>Nota</label>
+    <input type="text" name="nota" required>
 
-        {% for registro in registros %}
-            <details>
-                <summary>{{registro.aluno}}</summary>
-                <p>{{registro.nota}}</p>
-            </details>
-        {% endfor %}
-</body>
-</html>
+    <button>Adicionar</button>
+</form>
+
+<p> </p>
+
+    {% for registro in registros %}
+        <details>
+            <summary>{{registro.aluno}}</summary>
+            <p>{{registro.nota}}</p>
+        </details>
+    {% endfor %}
+
+{% endblock conteudo %}
+
