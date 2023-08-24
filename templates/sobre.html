@@ -23,10 +23,21 @@
 <p> </p>
 
     {% for registro in registros %}
-        <details>
+        <!-- <details>
             <summary>{{registro.aluno}}</summary>
             <p>{{registro.nota}}</p>
-        </details>
+        </details> -->
+
+        <p>
+            <a class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#collapseExample_{{registro.aluno}}" role="button" aria-expanded="false" aria-controls="collapseExample_{{registro.aluno}}">
+              {{registro.aluno}}
+            </a>
+        </p>
+          <div class="collapse" id="collapseExample_{{registro.aluno}}">
+            <div class="card card-body">
+                {{registro.nota}}
+            </div>
+          </div>
     {% endfor %}
 
 {% endblock conteudo %}
