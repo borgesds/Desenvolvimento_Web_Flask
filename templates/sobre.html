@@ -7,13 +7,17 @@
 <p style="text-align: center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nemo ea quidem nisi esse. Ad asperiores sint sapiente hic dolor quisquam odio nisi, laudantium ea aperiam nostrum tempore expedita temporibus?</p>
 <hr/>
 <form action="{{url_for('sobre')}}" method="POST">
-    <label>Aluno</label>
-    <input type="text" name="aluno" required>
+    <div class="mb-3">
+        <label>Aluno</label>
+        <input type="text" name="aluno" class="form-control" placeholder="Digite o nome do aluno" required>
+    </div>
 
-    <label>Nota</label>
-    <input type="text" name="nota" required>
-
-    <button>Adicionar</button>
+    <div class="mb-3">
+        <label>Nota</label>
+        <input type="text" name="nota" class="form-control" placeholder="Digite a nota" required>
+    </div>
+    
+    <button class="btn btn-success">Adicionar</button>
 </form>
 
 <p> </p>

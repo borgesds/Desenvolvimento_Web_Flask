@@ -2,17 +2,20 @@
 {% block conteudo %}
 <h2 style="text-align: center">Listas de Frutas</h2>
 <hr/>
-<ol>
+<ul class="list-group">
     <form action="{{url_for('principal')}}" method="POST">
-        <label>Fruta</label>
-        <input type="text" name="fruta">
-        <button>Acicionar</button>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Fruta</label>
+            <input type="text" class="form-control" id="examploFruta" name="fruta" placeholder="Digite o nome de uma fruta">
+        </div>
+
+        <button class="btn btn-success">Acicionar</button>
     </form>
 
     <p> </p>
 
     {% for fruta in frutas %}
-        <li>{{fruta}}</li>
+        <li class="list-group-item list-group-item-secondary">{{fruta}}</li>
     {% endfor %}        
-</ol>
+</ul>
 {% endblock conteudo %}
