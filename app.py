@@ -1,10 +1,27 @@
 from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 import urllib.request, json
 
 app = Flask(__name__)
 
+# Configuração do banco de dados MySQL
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cursos.sqlite3'
+db = SQLAlchemy(app)
+
 frutas = []
 registros = []
+
+
+class Cursos(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(50))
+    descricao = db.Column(db.String(120))
+    ch = db.Column(db.Integer)
+
+    def __init__(self, nome, descricao, ch):
+        self.nome = nome
+        self.descricao = descricao
+        self.ch = ch
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -60,5 +77,20 @@ def filmes(propriedade):
     return render_template("filmes.html", filmes=jsondata['results'])
 
 
+@app.route('/cursos')
+def lista_cursos():
+    return render_template('cursos.html', cursos=Cursos.query.all())
+
+
+@app.route('/cria_curso')
+def cria_curso():
+    return render_template('novo_curso.html')
+
+
 if __name__ == '__main__':
+    with app.app_context():
+        # Cria as tabelas do banco de dados
+        db.create_all()
+
+    # Executa a aplicação
     app.run(host='0.0.0.0', port=8000, debug=True)
