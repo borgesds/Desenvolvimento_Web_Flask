@@ -3,15 +3,21 @@
 <h2 style="text-align: center">Adicionar novo Curso</h2>
 <hr/>
 
+{%- for mensagem in get_flashed_messages() %}
+    <div class="alert alert-danger">
+        {{mensagem}}
+    </div>
+{%- endfor %}
+
 <form action="{{url_for('cria_curso')}}" method="POST" class="form-control">
     <label>Nome</label>
-    <input class="form-control" type="text" name="nome" placeholder="Nome do curso" required>
+    <input class="form-control" type="text" name="nome" placeholder="Nome do curso">
 
     <label>Descrição</label>
-    <input class="form-control" type="text" name="descricao" placeholder="Descrição do curso" required>
+    <input class="form-control" type="text" name="descricao" placeholder="Descrição do curso">
 
     <label>CH</label>
-    <input class="form-control" type="number" name="ch" placeholder="CH do curso" required>
+    <input class="form-control" type="number" name="ch" placeholder="CH do curso">
 
     <br><br>
 

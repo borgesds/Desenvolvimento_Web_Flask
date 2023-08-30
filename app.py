@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 import urllib.request, json
 
 app = Flask(__name__)
+
+# Defina a chave secreta aqui
+app.secret_key = 'mysecretkey123'
 
 # Configuração do banco de dados MySQL
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cursos.sqlite3'
@@ -89,12 +92,14 @@ def cria_curso():
     ch = request.form.get('ch')
 
     if request.method == 'POST':
-        curso = Cursos(nome, descricao, ch)
+        if not nome or not descricao or not ch:
+            flash("Preecha todos os campos do formulário", "error")
+        else:
+            curso = Cursos(nome, descricao, ch)
 
-        db.session.add(curso)
-        db.session.commit()
-
-        return redirect(url_for('lista_cursos'))
+            db.session.add(curso)
+            db.session.commit()
+            return redirect(url_for('lista_cursos'))
 
     return render_template('novo_curso.html')
 
