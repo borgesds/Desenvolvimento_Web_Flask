@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import urllib.request, json
 
@@ -82,8 +82,20 @@ def lista_cursos():
     return render_template('cursos.html', cursos=Cursos.query.all())
 
 
-@app.route('/cria_curso')
+@app.route('/cria_curso', methods=['GET', 'POST'])
 def cria_curso():
+    nome = request.form.get('nome')
+    descricao = request.form.get('descricao')
+    ch = request.form.get('ch')
+
+    if request.method == 'POST':
+        curso = Cursos(nome, descricao, ch)
+
+        db.session.add(curso)
+        db.session.commit()
+
+        return redirect(url_for('lista_cursos'))
+
     return render_template('novo_curso.html')
 
 
