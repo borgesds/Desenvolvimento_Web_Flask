@@ -104,6 +104,13 @@ def cria_curso():
     return render_template('novo_curso.html')
 
 
+@app.route('/<int:id>/atualiza_curso', methods=['GET', 'POST'])
+def atualiza_curso(id):
+    curso = Cursos.query.filter_by(id=id).first()
+
+    return render_template('atualiza_curso.html', curso=curso)
+
+
 if __name__ == '__main__':
     with app.app_context():
         # Cria as tabelas do banco de dados
