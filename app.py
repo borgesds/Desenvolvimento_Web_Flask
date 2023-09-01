@@ -83,7 +83,7 @@ def filmes(propriedade):
 @app.route('/cursos')
 def lista_cursos():
     page = request.args.get('page', 1, type=int)
-    per_page = 5
+    per_page = 10
     todos_cursos = Cursos.query.paginate(page=page, per_page=per_page)
 
     # return render_template('cursos.html', cursos=Cursos.query.all())
