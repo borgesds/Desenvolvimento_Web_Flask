@@ -1,0 +1,48 @@
+/* custom.css */
+
+/* Estilos para o input */
+.custom-form-group {
+    align-items: center;
+}
+
+.custom-input {
+    margin-right: 0.625rem;
+    max-width: 25rem;
+    display: block; 
+    margin-bottom: 0.625rem; 
+}
+
+.btnn {
+    margin-bottom: 1.25rem;
+}
+
+/* Estilos para a lista de frutas */
+.list-group {
+    margin-top: 1.25rem;
+    max-width: 25rem
+}
+
+.list-group-item {
+    font-size: 1.25rem;
+}
+
+/* Container que envolve as três divs */
+.flex-container {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+}
+
+/* Estilos para cada uma das divs */
+.flex-item {
+    max-width: calc(33.33% - 20px); /* Divide o espaço em 3 colunas */
+    padding: 0.625rem;
+    box-sizing: border-box;
+    border: 1px solid #999999;
+    border-radius: 1rem;
+}
+
+/* Estilo para a primeira div que cresce somente se tiver conteúdo */
+.flex-item.has-content {
+    flex-grow: 1; /* A primeira div crescerá em altura somente se tiver conteúdo */
+}

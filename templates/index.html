@@ -1,21 +1,43 @@
 {% extends 'base.html' %}
 {% block conteudo %}
+<head>
+    <!-- ... outras meta tags e links ... -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+</head>
+
 <h2 style="text-align: center">Listas de Frutas</h2>
 <hr/>
-<ul class="list-group">
-    <form action="{{url_for('principal')}}" method="POST">
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Fruta</label>
-            <input type="text" class="form-control" id="examploFruta" name="fruta" placeholder="Digite o nome de uma fruta">
-        </div>
+<div class="flex-container">
+    <div class="flex-item has-content">
+        <ul class="list-group">
+                <form action="{{url_for('principal')}}" method="POST">
+                    <div class="mb-3 custom-form-group">
+                        <label for="examploFruta" class="form-label">Fruta</label>
+                        <input type="text" class="form-control custom-input" id="examploFruta" name="fruta" placeholder="Digite o nome de uma fruta">
+                    </div>
+            
+                    <button class="btn btn-success btnn">Adicionar</button>
+                </form>
 
-        <button class="btn btn-success">Acicionar</button>
-    </form>
+                <div>
+                    {% for fruta in frutas %}
+                    <li class="list-group-item list-group-item-secondary">{{fruta}}</li>
+                    {% endfor %} 
+                </div>
+        </ul>
+    </div>
 
-    <p> </p>
+    <div class="flex-item">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui odit illum ut sunt illo laborum? Sed numquam mollitia tempora iure ratione debitis aspernatur sequi aliquid error quas illum, laborum soluta.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui odit illum ut sunt illo laborum? Sed numquam mollitia tempora iure ratione debitis aspernatur sequi aliquid error quas illum, laborum soluta.
+        </p>
+    </div>
 
-    {% for fruta in frutas %}
-        <li class="list-group-item list-group-item-secondary">{{fruta}}</li>
-    {% endfor %}        
-</ul>
+    <div class="flex-item">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui odit illum ut sunt illo laborum? Sed numquam mollitia tempora iure ratione debitis aspernatur sequi aliquid error quas illum, laborum soluta.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui odit illum ut sunt illo laborum? Sed numquam mollitia tempora iure ratione debitis aspernatur sequi aliquid error quas illum, laborum soluta.
+        </p>
+    </div>
+
 {% endblock conteudo %}
+

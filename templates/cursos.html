@@ -18,8 +18,8 @@
     </thead>
 
     <tbody>
-        
-        {% for curso in cursos%}
+
+        {% for curso in cursos.items %}
         <tr class="table-success">
             <td>{{curso.id}}</td>
             <td>{{curso.nome}}</td>
@@ -27,11 +27,26 @@
             <td>{{curso.ch}}</td>
             <td>
                 <a href="{{curso.id}}/atualiza_curso" class="btn btn-outline-warning btn-sm">Editar</a>
+
+                <a href="{{curso.id}}/remove_curso" onclick="return confirm('Deseja escluir esse registro?')" class="btn btn-outline-danger btn-sm">Excluir</a>
             </td>
         </tr>
         {% endfor %}
         
     </tbody>
 </table>
+
+<!-- Paginação -->
+{% if cursos.has_prev %}
+    <a class="btn btn-secondary btn-sm" href="{{url_for('lista_cursos', page=cursos.prev_num)}}">Cursos Anteriores</a>
+{% else %}
+    Cursos listados
+{% endif %}
+
+{% if cursos.has_next %}
+    <a class="btn btn-secondary btn-sm" href="{{url_for('lista_cursos', page=cursos.next_num)}}">Próximos Cursos</a>
+{% else %}
+    Cursos listados
+{% endif %}
 
 {% endblock conteudo %}

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy, Pagination
 import urllib.request, json
 
 app = Flask(__name__)
@@ -82,7 +82,12 @@ def filmes(propriedade):
 
 @app.route('/cursos')
 def lista_cursos():
-    return render_template('cursos.html', cursos=Cursos.query.all())
+    page = request.args.get('page', 1, type=int)
+    per_page = 5
+    todos_cursos = Cursos.query.paginate(page=page, per_page=per_page)
+
+    # return render_template('cursos.html', cursos=Cursos.query.all())
+    return render_template('cursos.html', cursos=todos_cursos)
 
 
 @app.route('/cria_curso', methods=['GET', 'POST'])
@@ -108,7 +113,31 @@ def cria_curso():
 def atualiza_curso(id):
     curso = Cursos.query.filter_by(id=id).first()
 
+    if request.method == 'POST':
+        nome = request.form["nome"]
+        descricao = request.form["descricao"]
+        ch = request.form["ch"]
+
+        Cursos.query.filter_by(id=id).update({
+            "nome": nome,
+            "descricao": descricao,
+            "ch": ch
+        })
+        db.session.commit()
+
+        return redirect(url_for('lista_cursos'))
+
     return render_template('atualiza_curso.html', curso=curso)
+
+
+@app.route('/<int:id>/remove_curso')
+def remove_curso(id):
+    curso = Cursos.query.filter_by(id=id).first()
+
+    db.session.delete(curso)
+    db.session.commit()
+
+    return redirect(url_for('lista_cursos'))
 
 
 if __name__ == '__main__':
